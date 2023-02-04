@@ -1,0 +1,14 @@
+### calling root api end point
+GET http://localhost:8000/
+
+
+### calling get method on task api end point
+GET http://localhost:8000/api/v1/task
+### calling get method on task api end point
+POST http://localhost:8000/api/v1/task
+### calling get method on task api end point
+PUT http://localhost:8000/api/v1/task
+### calling get method on task api end point
+PATCH http://localhost:8000/api/v1/task
+### calling get method on task api end point
+DELETE http://localhost:8000/api/v1/task
