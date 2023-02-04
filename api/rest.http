@@ -3,12 +3,25 @@ GET http://localhost:8000/
 
 
 ### calling get method on task api end point
-GET http://localhost:8000/api/v1/task
-### calling get method on task api end point
-POST http://localhost:8000/api/v1/task
-### calling get method on task api end point
+GET http://localhost:8000/api/v1/task/2
+### calling post method on task api end point
+POST http://localhost:8000/api/v1/task/
+Content-Type: application/json
+
+    {"_id": "6",
+      "task": "cleaning",
+      "hr": "1"
+    }
+
+
+### calling put method on task api end point
 PUT http://localhost:8000/api/v1/task
-### calling get method on task api end point
+### calling patch method on task api end point
 PATCH http://localhost:8000/api/v1/task
-### calling get method on task api end point
+### calling Delete method on task api end point
 DELETE http://localhost:8000/api/v1/task
+Content-Type: application/json
+
+  {
+      "_id":"2"
+    }

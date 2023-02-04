@@ -7,6 +7,10 @@ app.listen(8000, (error) => {
   console.log(`server is running at the port ${PORT}`);
 });
 // middlewares
+app.use(express.json());
+// app.use(express.urlencoded())
+
+// ///// global error handling
 app.use((error, req, res, next) => {
   const status = error.status || 404;
   res.status(status).json({
@@ -16,7 +20,7 @@ app.use((error, req, res, next) => {
 });
 
 // api end points
-app.use("/", taskRouter);
+app.use("/api/v1/task", taskRouter);
 app.use("/", (req, res) => {
   res.json({
     status: "success",
