@@ -1,7 +1,12 @@
 import express from "express";
+import { dbConnect } from "./src/config/dbconfig.js";
 const PORT = 8000;
 const app = express();
 import taskRouter from "./src/routers/taskRouter.js";
+
+// dbconnect
+dbConnect();
+
 app.listen(8000, (error) => {
   error && console.log(error);
   console.log(`server is running at the port ${PORT}`);

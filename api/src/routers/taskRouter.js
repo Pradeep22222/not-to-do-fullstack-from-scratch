@@ -1,4 +1,5 @@
 import express from "express";
+import { addTask } from "../model/task/taskModel.js";
 const taskRouter = express.Router();
 let fakeDb = [
   { _id: "1", task: "coding", hr: "3" },
@@ -24,15 +25,14 @@ taskRouter.get("/:_id?", (req, res, next) => {
   }
 });
 
-taskRouter.post("/", (req, res, next) => {
+taskRouter.post("/", async(req, res, next) => {
   try {
     const data = req.body;
-    console.log(data);
-    fakeDb.push(data);
+    const result = await addTask(data);
     res.json({
       status: "success",
       message: "respose from post method",
-      fakeDb,
+
     });
   } catch (error) {
     next(error);
