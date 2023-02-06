@@ -1,24 +1,16 @@
 import express from "express";
-import { addTask } from "../model/task/taskModel.js";
+import { addTask, deletemultipletasks, getAllTasks, getIndividualtask, updateTask } from "../model/task/taskModel.js";
 const taskRouter = express.Router();
-let fakeDb = [
-  { _id: "1", task: "coding", hr: "3" },
-  { _id: "2", task: "sleeping", hr: "8" },
-  { _id: "3", task: "netflix", hr: "2" },
-];
-taskRouter.get("/:_id?", (req, res, next) => {
+
+taskRouter.get("/:_id?", async(req, res, next) => {
   try {
     const { _id } = req.params;
-    let data = fakeDb;
-    if (_id) {
-      data = fakeDb.filter((item) => {
-        item._id === _id;
-      });
-    }
+
+   const result=_id?await getIndividualtask(_id):await getAllTasks()
     res.json({
       status: "success",
       message: "respose from get method",
-      data
+      result
     });
   } catch (error) {
     next(error);
@@ -32,42 +24,44 @@ taskRouter.post("/", async(req, res, next) => {
     res.json({
       status: "success",
       message: "respose from post method",
+      result
 
     });
   } catch (error) {
     next(error);
   }
 });
-taskRouter.put("/", (req, res, next) => {
+taskRouter.put("/", async(req, res, next) => {
   try {
+    const { _id, type } = req.body;
+    const result = await updateTask(_id, type);
     res.json({
       status: "success",
       message: "respose from put method",
+      result,
     });
   } catch (error) {
     next(error);
   }
 });
-taskRouter.patch("/", (req, res, next) => {
+// taskRouter.patch("/", (req, res, next) => {
+//   try {
+//     res.json({
+//       status: "success",
+//       message: "respose from patch method",
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+taskRouter.delete("/", async(req, res, next) => {
   try {
-    res.json({
-      status: "success",
-      message: "respose from patch method",
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-taskRouter.delete("/", (req, res, next) => {
-  try {
-    const { _id } = req.body;
-    console.log(_id);
-    const filteredArg = fakeDb.filter((item) => item._id != _id);
-    fakeDb = filteredArg;
+    const {ids} = req.body;
+    const result = await deletemultipletasks(ids);
     res.json({
       status: "success",
       message: "respose from delete method",
-      fakeDb,
+      result
     });
   } catch (error) {
     next(error);
