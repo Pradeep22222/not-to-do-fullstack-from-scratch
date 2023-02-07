@@ -1,0 +1,12 @@
+.wrapper {
+  min-height: 100vh;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 238, 4, 0.8),
+    rgba(66, 248, 5, 0.8)
+  );
+}
+.formHr {
+  padding-top: 0.2rem;
+  background-color: rgb(0, 0, 0);
+}
