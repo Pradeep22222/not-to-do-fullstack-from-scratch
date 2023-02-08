@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { dbConnect } from "./src/config/dbconfig.js";
 const PORT = 8000;
 const app = express();
@@ -13,6 +14,7 @@ app.listen(8000, (error) => {
 });
 // middlewares
 app.use(express.json());
+app.use(cors())
 // app.use(express.urlencoded())
 
 // ///// global error handling
