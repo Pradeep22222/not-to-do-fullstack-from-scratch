@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   task: "",
@@ -18,7 +17,7 @@ export const AddForm = ({ addTask }) => {
   }
   const handleOnSubmit = e => {
     e.preventDefault();
-    addTask({...form, id:uuidv4()});
+    addTask({form});
   }
   return (
     <div>

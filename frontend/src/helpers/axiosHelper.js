@@ -3,9 +3,22 @@ const apiEp = "http://localhost:8000/api/v1/task/";
 
 export const fetchTask = async () => {
   try {
-      const result = await axios.get(apiEp);
-      console.log(result);
-    return result.data;
+      const {data} = await axios.get(apiEp);
+
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+export const postTask = async (obj) => {
+  try {
+    const {data} = await axios.post(apiEp, obj);
+
+    return data;
   } catch (error) {
     return {
       status: "error",
