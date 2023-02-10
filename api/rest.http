@@ -9,7 +9,7 @@ POST http://localhost:8000/api/v1/task/
 Content-Type: application/json
 
     {
-      "task": "last check",
+      "task": "lagfgfgfgst check",
       "hr": "1"
     }
 

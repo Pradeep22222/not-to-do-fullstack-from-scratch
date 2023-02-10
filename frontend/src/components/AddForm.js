@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -7,18 +7,18 @@ import Row from "react-bootstrap/Row";
 const initialState = {
   task: "",
   hr: "",
-  type:"entry",
-}
+  type: "entry",
+};
 export const AddForm = ({ addTask }) => {
-  const [form,setForm]=useState(initialState)
-  const handleOnChange = e => {
+  const [form, setForm] = useState(initialState);
+  const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]:value})
-  }
-  const handleOnSubmit = e => {
+    setForm({ ...form, [name]: value });
+  };
+  const handleOnSubmit = (e) => {
     e.preventDefault();
-    addTask({form});
-  }
+    addTask(form);
+  };
   return (
     <div>
       <Form onSubmit={handleOnSubmit}>
@@ -28,6 +28,7 @@ export const AddForm = ({ addTask }) => {
               placeholder="Task name"
               required
               name="task"
+              type="string"
               onChange={handleOnChange}
             />
           </Col>
@@ -41,7 +42,7 @@ export const AddForm = ({ addTask }) => {
             />
           </Col>
           <Col md={2}>
-            <Button variant="success"  type="submit">
+            <Button variant="success" type="submit">
               Add task
             </Button>
           </Col>
@@ -49,4 +50,4 @@ export const AddForm = ({ addTask }) => {
       </Form>
     </div>
   );
-}
+};
