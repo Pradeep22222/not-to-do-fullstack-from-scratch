@@ -4,7 +4,7 @@ import { Button, Container } from "react-bootstrap";
 import { AddForm } from "./components/AddForm";
 import { ListArea } from "./components/ListArea";
 import { useState, useEffect } from "react";
-import { fetchTask, postTask } from "./helpers/axiosHelper";
+import { fetchTask, postTask, switchServerTask } from "./helpers/axiosHelper";
 const wklyHr = 7 * 24;
 function App() {
   const [taskList, setTaskList] = useState([]);
@@ -23,16 +23,12 @@ function App() {
       return alert("Sorry mate, you don't have enough time to fit this task");
     }
     const result = await postTask(task);
-    getTaskFromServer();
+    result.status==="success" && getTaskFromServer();
   };
-  const switchTask = (id, type) => {
-    const switchedArg = taskList.map((item, index) => {
-      if (item.id === id) {
-        item.type = type;
-      }
-      return item;
-    });
-    setTaskList(switchedArg);
+  const switchTask = async(_id, type) => {
+    const data = await switchServerTask({ _id, type });
+
+  data.status==="success" && getTaskFromServer();
   };
   const handleOnCheck = (e) => {
     const { checked, value } = e.target;

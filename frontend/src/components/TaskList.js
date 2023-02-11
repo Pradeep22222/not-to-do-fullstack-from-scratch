@@ -34,7 +34,7 @@ export const TaskList = ({ title, arrow, list = [], switchTask, handleOnCheck, n
                     <Button
                       variant="success"
                       onClick={() => {
-                        switchTask(item.id, "bad");
+                        switchTask(item._id, "bad");
                       }}
                     >
                       <i className="fa-solid fa-arrow-right"></i>
@@ -43,7 +43,7 @@ export const TaskList = ({ title, arrow, list = [], switchTask, handleOnCheck, n
                     <Button
                       variant="danger"
                       onClick={() => {
-                        switchTask(item.id, "entry");
+                        switchTask(item._id, "entry");
                       }}
                     >
                       <i className="fa-solid fa-arrow-left"></i>

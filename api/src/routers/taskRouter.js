@@ -31,7 +31,7 @@ taskRouter.post("/", async(req, res, next) => {
     next(error);
   }
 });
-taskRouter.put("/", async(req, res, next) => {
+taskRouter.patch("/", async(req, res, next) => {
   try {
     const { _id, type } = req.body;
     const result = await updateTask(_id, type);
