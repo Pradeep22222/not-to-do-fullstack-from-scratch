@@ -56,7 +56,7 @@ taskRouter.patch("/", async(req, res, next) => {
 // });
 taskRouter.delete("/", async(req, res, next) => {
   try {
-    const {ids} = req.body;
+    const ids = req.body;
     const result = await deletemultipletasks(ids);
     res.json({
       status: "success",

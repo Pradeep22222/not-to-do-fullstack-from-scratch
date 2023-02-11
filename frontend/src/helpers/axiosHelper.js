@@ -3,7 +3,7 @@ const apiEp = "http://localhost:8000/api/v1/task/";
 
 export const fetchTask = async () => {
   try {
-      const {data} = await axios.get(apiEp);
+    const { data } = await axios.get(apiEp);
 
     return data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const fetchTask = async () => {
 
 export const postTask = async (obj) => {
   try {
-    const {data} = await axios.post(apiEp, obj);
+    const { data } = await axios.post(apiEp, obj);
 
     return data;
   } catch (error) {
@@ -42,7 +42,7 @@ export const switchServerTask = async (obj) => {
 
 export const deleteServerTask = async (ids) => {
   try {
-    const { data } = await axios.delete(apiEp, ids);
+    const { data } = await axios.delete(apiEp, { data: ids });
 
     return data;
   } catch (error) {

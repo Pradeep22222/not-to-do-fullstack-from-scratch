@@ -4,7 +4,12 @@ import { Button, Container } from "react-bootstrap";
 import { AddForm } from "./components/AddForm";
 import { ListArea } from "./components/ListArea";
 import { useState, useEffect } from "react";
-import { deleteServerTask, fetchTask, postTask, switchServerTask } from "./helpers/axiosHelper";
+import {
+  deleteServerTask,
+  fetchTask,
+  postTask,
+  switchServerTask,
+} from "./helpers/axiosHelper";
 const wklyHr = 7 * 24;
 function App() {
   const [taskList, setTaskList] = useState([]);
@@ -23,12 +28,12 @@ function App() {
       return alert("Sorry mate, you don't have enough time to fit this task");
     }
     const result = await postTask(task);
-    result.status==="success" && getTaskFromServer();
+    result.status === "success" && getTaskFromServer();
   };
-  const switchTask = async(_id, type) => {
+  const switchTask = async (_id, type) => {
     const data = await switchServerTask({ _id, type });
 
-  data.status==="success" && getTaskFromServer();
+    data.status === "success" && getTaskFromServer();
   };
   const handleOnCheck = (e) => {
     const { checked, value } = e.target;
@@ -61,12 +66,15 @@ function App() {
     }
   };
   console.log(ids);
-  const handleOnDelete = async() => {
-    if (window.confirm("Are you sure, you want to delete the selected item")) {
-     const data = await deleteServerTask({ids});
-     setIds([]);
+  const handleOnDelete = async () => {
+    if (!window.confirm("Are you sure, you want to delete the selected item")) {
+      return;
     }
-    return;
+    const data = await deleteServerTask(ids);
+    if (data.status === "success") {
+      getTaskFromServer();
+      setIds([]);
+    }
   };
   return (
     <div className="wrapper">
