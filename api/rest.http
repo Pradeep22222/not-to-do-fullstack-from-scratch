@@ -29,5 +29,5 @@ DELETE http://localhost:8000/api/v1/task
 Content-Type: application/json
 
   {
-      "ids":["63e030ca110984d991bcca3e","63e04b652114e5a90136c3d7"]
+      "ids":["63e02ab109ffc8f43a399e9a","63e7732befc48c2b550e69c9"]
     }

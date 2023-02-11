@@ -4,7 +4,7 @@ import { Button, Container } from "react-bootstrap";
 import { AddForm } from "./components/AddForm";
 import { ListArea } from "./components/ListArea";
 import { useState, useEffect } from "react";
-import { fetchTask, postTask, switchServerTask } from "./helpers/axiosHelper";
+import { deleteServerTask, fetchTask, postTask, switchServerTask } from "./helpers/axiosHelper";
 const wklyHr = 7 * 24;
 function App() {
   const [taskList, setTaskList] = useState([]);
@@ -39,7 +39,7 @@ function App() {
       let toDeleteIds = [];
       taskList.forEach((item) => {
         if (item.type === value) {
-          toDeleteIds.push(item.id);
+          toDeleteIds.push(item._id);
         }
       });
       if (checked) {
@@ -61,11 +61,10 @@ function App() {
     }
   };
   console.log(ids);
-  const handleOnDelete = () => {
+  const handleOnDelete = async() => {
     if (window.confirm("Are you sure, you want to delete the selected item")) {
-      const tempArg = taskList.filter((item) => !ids.includes(item.id));
-      setTaskList(tempArg);
-      setIds([]);
+     const data = await deleteServerTask({ids});
+     setIds([]);
     }
     return;
   };

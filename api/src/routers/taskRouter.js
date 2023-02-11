@@ -37,7 +37,7 @@ taskRouter.patch("/", async(req, res, next) => {
     const result = await updateTask(_id, type);
     res.json({
       status: "success",
-      message: "respose from put method",
+      message: "respose from patch method",
       result,
     });
   } catch (error) {
