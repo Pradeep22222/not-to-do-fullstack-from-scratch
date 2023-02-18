@@ -21,12 +21,16 @@ taskRouter.post("/", async(req, res, next) => {
   try {
     const data = req.body;
     const result = await addTask(data);
-    res.json({
-      status: "success",
-      message: "respose from post method",
-      result
-
-    });
+    result?._id
+      ? res.json({
+          status: "success", // either success or error
+          messsage: "The new task has been added.",
+        })
+      : res.json({
+          status: "error", // either success or error
+          messsage: "Error, Unable to add new task, Please try again later",
+          result,
+        });
   } catch (error) {
     next(error);
   }
