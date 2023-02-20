@@ -1,4 +1,4 @@
-import "dotenv/config"
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -34,6 +34,6 @@ app.use((error, req, res, next) => {
 
 // api end points
 app.use("/api/v1/task", taskRouter);
-app.use("/", (req, res,next) => {
+app.use("/", (req, res, next) => {
   res.sendFile(path.join(__dirname, "/frontend/build/index.html"));
 });
